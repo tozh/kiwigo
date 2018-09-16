@@ -202,7 +202,6 @@ func testKiwi0_9999() {
 	c := TcpClient("0.0.0.0", 9988)
 	defer 	c.Close()
 
-
 	t4 := time.Now()
 	tsset := time.Duration(0)
 	tsget := time.Duration(0)

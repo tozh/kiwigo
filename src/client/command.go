@@ -1,24 +1,25 @@
 package client
 
-type status int
 
-func (c *Client) setResult() (status, error) {
+func (c *Client) setResult() (int, error) {
 	reply := c.readBuf.String()
-	if reply[0:len(reply)-1] == shared.Ok {
-		return STATUS_SUCCESS, nil
+	if reply[0:len(reply)-1] == shared.One {
+		return 1, nil
 	}
-	return STATUS_FAIL, errSetFailed
+	return 0, errSetFailed
 }
 
-func (c *Client) setQuery(key string, value string) {
+func (c *Client) setQuery(key string, value string, params ...string) {
 	c.addQueryMultiBulkLen(3)
 	c.addQueryBulkStr("set")
 	c.addQueryBulkStr(key)
+	for _, str := range params {
+		c.addQueryBulkStr(str)
+	}
 	c.addQueryBulkStr(value)
 }
-func (c *Client) Set(key string, value string) (status, error) {
+func (c *Client) Set(key string, value string, params ...string) (int, error) {
 	defer c.reset()
-
 	c.setQuery(key, value)
 	c.writeToServer()
 	readCh := make(chan error, 1)
@@ -27,12 +28,12 @@ func (c *Client) Set(key string, value string) (status, error) {
 	select {
 	case <-c.passiveCloseCh:
 		// fmt.Println("Set ----> Stop Client")
-		return STATUS_UNKNOWN, errEOF
+		return 0, errEOF
 	case err := <-readCh:
 		if err == nil {
 			return c.setResult()
 		} else {
-			return STATUS_FAIL, err
+			return 0, err
 		}
 		//case <- time.After(c.timeOut):
 		//	// fmt.Println("TimeOut")
@@ -81,6 +82,14 @@ func (c *Client) Get(key string) (string, error) {
 			return "", err
 		}
 	}
+}
+
+func (c *Client) SetNx(key string, value string) (int, error) {
+	return c.Set(key, value, []string{"NX"}...)
+}
+
+func (c *Client) SetEx(key string, value string) (int, error) {
+	return c.Set(key, value, []string{"EX"}...)
 }
 
 type Clienter interface {
