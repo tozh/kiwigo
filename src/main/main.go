@@ -77,8 +77,8 @@ func testRedis0_9999() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 
 
 }
@@ -135,8 +135,8 @@ func testRedis10000_20000() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 func testRedisComplex() {
 	fmt.Println("test Redis complex")
@@ -191,8 +191,8 @@ func testRedisComplex() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 
 func testKiwi0_9999() {
@@ -249,8 +249,8 @@ func testKiwi0_9999() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 func testKiwi0_2() {
 	fmt.Println("test Kiwi 0_9999")
@@ -306,8 +306,8 @@ func testKiwi0_2() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 
 func testKiwi10000_20000() {
@@ -365,8 +365,8 @@ func testKiwi10000_20000() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 
 func testKiwiComplex() {
@@ -424,8 +424,8 @@ func testKiwiComplex() {
 	fmt.Println("setfailed", setfailed)
 	fmt.Println("getfailed", getfailed)
 	fmt.Println("notEqual", notEqual)
-	fmt.Println("time set", tsset)
-	fmt.Println("time get", tsget)
+	fmt.Println("set qps--->", 10000.0/ (float64(tsset.Nanoseconds())/float64(time.Second)))
+	fmt.Println("get qps--->", 10000.0/ (float64(tsget.Nanoseconds())/float64(time.Second)))
 }
 
 func createKey(i int) string {
